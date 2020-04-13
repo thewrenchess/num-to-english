@@ -31,6 +31,10 @@ function convert_number_to_english (number) {
     decimal = decimal.slice(1).replace(/0+$/, '')
   }
 
+  if (whole_number === '0' && !decimal) {
+    return 'zero'
+  }
+
   const whole_number_eng = convert_whole_number_to_english(whole_number)
   const decimal_eng = convert_decimal_number_to_english(decimal)
 
