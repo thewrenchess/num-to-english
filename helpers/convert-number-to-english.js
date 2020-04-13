@@ -31,11 +31,33 @@ function convert_number_to_english (number) {
     decimal = decimal.slice(1).replace(/0+$/, '')
   }
 
-  const test = convert_per_unit_number_to_english(whole_number)
+  const whole_number_eng = convert_whole_number_to_english(whole_number)
   const decimal_eng = convert_decimal_number_to_english(decimal)
 
-  const num_in_english = `${is_negative ? 'negative ' : ''}${test}${decimal_eng ? ' point ' + decimal_eng : ''}`
+  const num_in_english = `${is_negative ? 'negative ' : ''}${whole_number_eng}${decimal_eng ? ' point ' + decimal_eng : ''}`
   return num_in_english
+}
+
+function convert_whole_number_to_english (number_str) {
+  if (number_str === '0') {
+    return 'zero'
+  }
+
+  let whole_number_eng = ''
+  let unit_index = 0
+
+  while (number_str) {
+    const unit = UNITS[unit_index]
+    const number_part = number_str.slice(-3)
+    const number_part_eng = convert_per_unit_number_to_english(number_part)
+    if (number_part_eng) {
+      whole_number_eng = `${number_part_eng}${unit ? ' ' + unit : ''}${whole_number_eng ? ' ' + whole_number_eng : ''}`
+    }
+    number_str = number_str.slice(0, -3)
+    unit_index++
+  }
+
+  return whole_number_eng
 }
 
 function convert_decimal_number_to_english (number_str) {
@@ -52,7 +74,7 @@ function convert_decimal_number_to_english (number_str) {
 function convert_per_unit_number_to_english (number_str) {
   let number = parseInt(number_str)
   if (!number) {
-    return 'zero'
+    return ''
   }
 
   let hundred_eng = ''
