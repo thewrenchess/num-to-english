@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { convert_number_to_english } = require('../helpers/convert-number-to-english')
+const { convert_number_to_english } = require('../utils/convert-number-to-english')
 
 const router = Router()
 
