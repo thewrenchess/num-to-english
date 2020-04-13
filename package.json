@@ -1,0 +1,12 @@
+{
+  "name": "fama-technical",
+  "version": "1.0.0",
+  "description": "a server endpoint that convert any number given to it into english words that describe that number",
+  "main": "index.js",
+  "repository": "https://github.com/thewrenchess/num-to-english.git",
+  "author": "thewrenchess",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
